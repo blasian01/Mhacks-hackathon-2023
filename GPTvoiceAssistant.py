@@ -60,7 +60,7 @@ def speak():
     return text
 
 #chatGPT API setup -------------------------------------------------------------------------
-openai.api_key = "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"
+openai.api_key = "API_KEY"
 
 #creating the GUI of the application
 root = tk.Tk()
