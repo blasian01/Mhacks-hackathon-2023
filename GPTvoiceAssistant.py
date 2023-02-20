@@ -37,20 +37,19 @@ def GPT(prompt):
 
 #creating a function that will activate the microphone of the device and start using googles voice recognition to get a quiry
 def speak():
-    
-    #print("starting...")
+    print("starting...")
     text = "" #empty string to store recognized speech
     r = sr.Recognizer()
     
     with sr.Microphone() as source:
         print("Speak now: ")
         # listen for audio input, limit to 5 seconds
-        audio = r.listen(source, phrase_time_limit=5)
+        audio = r.listen(source, phrase_time_limit=3)
 
         # recognize speech using Google Speech Recognition
         try:
             text = r.recognize_google(audio)
-            #print(f"You said: {text}")
+            print(f"You said: {text}")
         except sr.UnknownValueError:
             print("Sorry, I could not understand what you said.")
             text = "give me a second"
@@ -61,7 +60,7 @@ def speak():
     return text
 
 #chatGPT API setup -------------------------------------------------------------------------
-openai.api_key = "OPENAI_API_KEY"
+openai.api_key = "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"
 
 #creating the GUI of the application
 root = tk.Tk()
@@ -74,9 +73,9 @@ root.geometry("500x500")
 def on_chat_button_click():
     while True:
         recognized_text = speak()
-        #print("got it")
+        print("got it")
         GPTresponse = GPT(recognized_text)
-        #print("going to speak")
+        print("going to speak")
         text_speech.say(GPTresponse)
         text_speech.runAndWait()
 
